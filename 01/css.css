@@ -1,0 +1,26 @@
+*{margin: 0;padding: 0;}
+body{
+    width: 100%;
+    height: 100%;
+}
+header{
+    height: 100px;
+    background-color: rgb(19,190,155);
+}
+.wrap{
+    height: calc(100vh - 100px - 100px);
+    background-image: url(../选择器.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat-x: no-repeat;
+}
+footer{
+    height: 100px;
+    background-color: rgb(128,103,254);
+}
+
+img{
+    width: 100%;
+    border: 3px solid gray;
+    box-sizing: border-box;
+}
