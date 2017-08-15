@@ -1,0 +1,5 @@
+header{
+    box-sizing: border-box;
+    border: 5px solid gray;
+    border-radius: 4px;
+}

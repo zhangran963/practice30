@@ -1,23 +1,27 @@
 var path = require("path");
+var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: {
-        js1: "./01/js1.js",
-        js2: "./01/js2.js"
+        // main: "./01/js1.js",
+        // vendor: "jquery"
+        main: "jquery",
+        vendor: "./01/js1.js"
     },
     output: {
         path: __dirname + "/01dist",
-        filename: '[name].bundle.js',
+        filename: '[chunkhash].[name].js',
     },
-    // devtool: 'inline-source-map',
+    devtool: 'inline-source-map',
     devServer: {
         contentBase: './01dist',  /*文件路径*/
     },
     module: {
         rules: [
-            {test: /\.css$/,use:["style-loader","css-loader"]},
+            {test: /\.css$/,use:ExtractTextPlugin.extract({use: 'css-loader'})},
             {test: /\.(jpg|png|gif|svg)$/,use: ["file-loader"]},
         ]
     },
@@ -27,5 +31,9 @@ module.exports = {
             title: "测试html模板",
             template: "./01/index.html"  //在模板的基础上添加js标签
         }),
+        new ExtractTextPlugin("styles.css"),  //添加css文件(可以多文件合并);
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor', 'manifest']  //添加manifest使vender不会改变;
+        })
     ]
 };

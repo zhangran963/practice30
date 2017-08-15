@@ -1,6 +1,6 @@
 
 module.exports = {
     read1: function(){
-        console.log("js");
+        console.log("js22");
     }
 };
